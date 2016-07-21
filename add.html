@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+New User
+</title>
+
+<style type="text/css">
+
+body
+{
+	background: rgb(200,190,255);
+}
+
+div#form
+{
+	background: black;
+	border: 10px inset red;
+	width: 540px;
+	height:860px;
+	padding: 30px;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translateX(-50%) translateY(-50%);
+	margin: 0px auto ;
+}
+
+@media screen and (max-width:640px)
+{
+	#form
+	{
+		width:100%;
+		
+	}
+}
+
+@media screen and (max-width:320px)
+{
+	#form
+	{
+		width:320px;
+	}
+}
+p
+{
+	
+	font-family: cambria;
+	color: yellow;
+}
+
+h4
+{
+	font-family: cambria;
+	color: green;
+}
+
+h1
+{	
+	
+	font-family: times new roman;
+	color: violet;
+	text-align: center;
+	font-size: 25px;
+}
+
+h2
+{	
+	font-family: jokerman;
+	color: blue;
+	text-align: left;
+	font-size: 25px;
+}
+
+h3
+{	
+	display: inline;
+	font-family: cambria;
+	color: hotpink;
+	font-size: 15px;
+}
+
+input[type="radio"]:checked:before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: blue;
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+
+function check(form)
+{
+	var letters = /^[-A-Za-z.&, ]+$/;
+	var uname = /^[-A-Za-z_0-9.&,@: ]+$/;
+	var mail = /^[-.,@A-Za-z_0-9]+$/;
+	var pass = /^[A-Za-z_0-9@& ]+$/;
+	var patt1 = /^@/;
+
+	var ver= document.getElementById("uname");
+
+
+	if(!letters.test(form.name.value))
+	{
+		alert("Please enter valid characters!!");
+		form.name.focus();
+		return false;
+	}
+
+	if(!uname.test(form.uname.value))
+	{
+		alert("Please enter valid characters!!");
+		form.uname.focus();
+		return false;
+	}
+
+	if(form.uname.value.length<5) 
+	{
+        alert("Username must contain atleast 5 characters only!");
+        form.uname.focus();
+        return false;
+    }
+
+    if(form.uname.value.length>15) 
+	{
+        alert("Username must contain atmost 15 characters only!");
+        form.uname.focus();
+        return false;
+    }
+
+    re = /[A-Z]/;	
+	if(!re.test(form.uname.value))
+	{
+		alert("Username should contain atleast 1 uppercase letter!!");
+		form.uname.focus();
+		return false;
+	}
+
+	if(!letters.test(form.about.value))
+	{
+		alert("Please enter valid characters!!");
+		form.about.focus();
+		return false;
+	}
+
+	if(!mail.test(form.email.value))
+	{
+		alert("Please enter valid characters!!");
+		form.email.focus();
+		return false;
+	}
+
+	if(form.pwd.value != form.pwd2.value)
+	{
+		alert("Please enter the same passwords!!");
+		form.re_password.focus();
+		return false;
+	}
+
+	if(!pass.test(form.password.value))
+	{
+		alert("Please enter a valid password!!");
+		form.password.focus();
+		return false;
+	}
+
+	if(form.pwd.value.length<5) 
+	{
+        alert("Password must contain atleast 5 characters only!");
+        form.password.focus();
+        return false;
+    }
+
+    if(form.pwd.value.length>15) 
+	{
+        alert("Password must contain atmost 15 characters only!");
+        form.password.focus();
+        return false;
+    }
+      
+    if(form.pwd.value == form.uname.value) 
+    {
+        alert("Password must be different from Username!");
+        form.pwd.focus();
+        return false;
+    }
+
+    if(form.pwd.value == form.name.value) 
+    {
+        alert("Password must be different from Name!");
+        form.pwd.focus();
+        return false;
+    }
+
+    if(form.pwd.value == form.phone.value) 
+    {
+        alert("Password must be different from Phone Number!");
+        form.pwd.focus();
+        return false;
+    }
+      
+    re = /[0-9]/;
+    if(!re.test(form.pwd.value)) 
+    {
+        alert("Password must contain at least one number (0-9)!");
+        form.pwd.focus();
+        return false;
+    }
+      
+    re = /[a-z]/;
+    if(!re.test(form.pwd.value)) 
+    {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.pwd.focus();
+        return false;
+    }
+      
+
+    re = /[A-Z]/;
+    if(!re.test(form.pwd.value)) 
+    {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.pwd.focus();
+        return false;
+    }
+
+    var result= ver.match(patt1);
+    if(result!="@")
+    {
+    	alert("Username should start with '@' only!");
+    	return false;
+    }
+
+	return true;
+}
+
+function checkPass()
+{
+    var pass1 = document.getElementById('pwd');
+    var pass2 = document.getElementById('pwd2');
+    var message = document.getElementById('confirmMessage');
+    var message2 = document.getElementById('Message');
+    var pass = /^[A-Za-z_0-9 @&]+$/;
+
+    if(pass1.value == pass2.value)
+    {
+        pass2.style.backgroundColor = "#66cc66";
+        message.style.color = "#66cc66";
+        message.innerHTML = "Passwords Match!";
+    }
+    else
+    {
+        pass2.style.backgroundColor = "#ff6666";
+        message.style.color = "#ff6666";
+        message.innerHTML = "Passwords Do Not Match!";
+    }
+
+    if(!pass.test(pass1.value))
+	{
+		pass1.style.backgroundColor = "hotpink";
+		message2.style.color = "hotpink";
+        message2.innerHTML = "Password is not valid!";
+	}
+
+	else
+	{
+		pass1.style.backgroundColor = "#c8beff";
+		message2.style.color = "#c8beff";
+        message2.innerHTML = "Password is valid!";
+	}
+
+	if(pass1.value.length<5 && pass1.value.length>0) 
+	{
+        pass1.style.backgroundColor = "hotpink";
+		message2.style.color = "hotpink";
+        message2.innerHTML = "Password is too short!!";
+    }
+
+    else if(pass1.value == "")
+    {
+        pass1.style.backgroundColor = "#ff6666";
+        message2.style.color = "#ff6666";
+        message2.innerHTML = "Enter Password!";
+    }
+
+    else if(pass1.value.length>15) 
+	{
+        pass1.style.backgroundColor = "hotpink";
+		message2.style.color = "hotpink";
+        message2.innerHTML = "Password is too long!!";
+    }
+
+    re = /[A-Z]/;	
+	if(!re.test(pass1.value))
+	{
+		pass1.style.backgroundColor = "#ff6666";
+        message2.style.color = "#ff6666";
+        message2.innerHTML = "Password must contain atleast 1 Uppercase alphabet!!";
+	}
+
+	re = /[a-z]/;	
+	if(!re.test(pass1.value))
+	{
+		pass1.style.backgroundColor = "#ff6666";
+        message2.style.color = "#ff6666";
+        message2.innerHTML = "Password must contain atleast 1 Lowercase alphabet!!";
+	}
+
+	re = /[0-9]/;	
+	if(!re.test(pass1.value))
+	{
+		pass1.style.backgroundColor = "#ff6666";
+        message2.style.color = "#ff6666";
+        message2.innerHTML = "Password must contain atleast 1 number!!";
+	}
+
+	
+}  
+
+
+function checkuname()
+{
+	var uname= document.getElementById("uname");
+	var text= /^[-A-Za-z_0-9.&,@: ]+$/;
+	var message= document.getElementById("message");
+	
+	if(!text.test(uname.value))
+	{
+		uname.style.backgroundColor = "#ff6666";
+        message.style.color = "#ff6666";
+        message.innerHTML = "Invalid Username! Enter valid characters only...";
+	}
+
+	else
+	{
+		uname.style.backgroundColor = "#66cc66";
+        message.style.color = "#66cc66";
+        message.innerHTML = "Valid Username!";
+	}
+
+	if(uname.value[0]!="@")
+	{
+		uname.style.backgroundColor = "#ff6666";
+        message.style.color = "#ff6666";
+        message.innerHTML = "Invalid Username! Start with '@' only!!";
+	}
+
+	re = /[A-Z]/;	
+	if(!re.test(uname.value))
+	{
+		uname.style.backgroundColor = "#ff6666";
+        message.style.color = "#ff6666";
+        message.innerHTML = "Username must contain atleast 1 Uppercase alphabet!!";
+	}
+
+	if(uname.value.length<5) 
+	{
+        uname.style.backgroundColor = "#ff6666";
+		message.style.color = "#ff6666";
+        message.innerHTML = "Username is too short!!";
+    }
+
+    else if(uname.value.length>15) 
+	{
+        uname.style.backgroundColor = "#ff6666";
+		message.style.color = "#ff6666";
+        message.innerHTML = "Username is too long!!";
+    }
+}
+
+function checkname()
+{
+	var name= document.getElementById("name");
+	var letter= /^[A-Za-z. ]+$/;
+	var mes= document.getElementById("mes");
+
+	if(!letter.test(name.value))
+	{
+		name.style.backgroundColor = "#ff6666";
+        mes.style.color = "#ff6666";
+        mes.innerHTML = "Invalid name! Enter valid characters only...";
+	}
+
+	else
+	{
+		name.style.backgroundColor = "#66cc66";
+        mes.style.color = "#66cc66";
+        mes.innerHTML = "Valid name!";
+	}
+}
+
+(function(global){if(typeof(global)==="undefined")
+	{
+		thrownewError("window is undefined");
+	}
+
+	var _hash ="!";
+	var noBackPlease =function()
+	{	
+		global.location.href +="#";
+		global.setTimeout(function(){global.location.href +="!";},50);};
+		global.onhashchange =function(){if(global.location.hash !== _hash){global.location.hash = _hash;}};
+		global.onload =function()
+		{            
+        	noBackPlease();
+        	document.body.onkeydown =function(e){var elm = e.target.nodeName.toLowerCase();if(e.which ===8&&(elm !=='input'&& elm  !=='textarea'))
+        	{
+            	e.preventDefault();
+            }
+            	
+    e.stopPropagation();};}})(window);
+    
+</script>
+
+<div id="form">
+
+<h1 id="student"> User Details</h1>
+
+<form action="http://localhost/test/validate.php" method="post" enctype="multipart/form-data" id="myForm"  onsubmit= "return check(this);">
+
+<p>Name<span style="color:red">*</span></p>
+<input type="text" name="name" id="name" value="Sriram.G" onkeyup="checkname(); return false;" required>
+<span id="mes" class="confirmMessage"></span>
+
+<p>E-Mail<span style="color:red">*</span></p>
+<input type="email"  name="email" value="sriram_g@nitt.edu" required>
+
+<p>Username<span style="color:red">*</span></p>
+<input type="text" name="uname" id="uname" value="@sriram1997" onkeyup="checkuname(); return false;" required>
+<span id="message" class="confirmMessage"></span>
+
+<p>Password<span style="color:red">*</span></p>
+<input type="password" name="password" id="pwd" onkeyup="checkPass(); return false;" required>
+<span id="Message" class="confirmMessage"></span>
+
+<p>Re-Type Password<span style="color:red">*</span></p>
+<input type="password" name="re_password" id="pwd2" onkeyup="checkPass(); return false;" required>
+<span id="confirmMessage" class="confirmMessage"></span>
+<br><br>
+<input type="checkbox" onchange="document.getElementById('pwd').type=this.checked?'text':'password'; document.getElementById('pwd2').type=this.checked?'text':'password'"><h3>Show passwords</h3>
+
+<p>Gender<span style="color:red">*</span></p>
+<h4>
+<input type="radio" name="gender" value="Male" checked="checked" autocomplete="off">Male<br>
+</h4>
+<h4>
+<input type="radio" name="gender" value="Female"> Female<br>
+</h4>
+<h4>
+<input type="radio" name="gender" value="Other"> Other
+</h4>
+
+<p>Phone number<span style="color:red">*</span></p>
+<input type="number" name="phone" value="9876543210" min="7000000000" max="9999999999" required>  <!--these min & max values correspond to the existing mobile-number conditions only!!-->
+
+<p>About yourself</p>
+<textarea name="about" rows="1" cols="60" required> Ardent, Explicit and Jovial</textarea>
+
+<p>Profile Picture<span style="color:red">*</span></p>
+<h3>
+<input type="file" name="propic" id="propic" accept="image/*" required>
+</h3>
+<br><br><br>
+
+<input type="submit" value="Sign Up">
+</form>
+</div>
+</body>
+</html>

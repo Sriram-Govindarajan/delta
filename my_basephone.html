@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		My Base
+	</title>
+
+	<style type="text/css">
+		
+		body
+		{
+			background: rgb(140,100,180);
+		}
+
+		div#login
+		{
+			background: rgb(255,190,200);
+			border: 10px inset white;
+			width: 400px;
+			height: 230px;
+			padding: 40px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			margin: 0px auto ;
+		}
+
+		img
+		{
+			max-height: 15%; 
+			max-width: 18%; 
+			border: 3px inset #ffddcc; 
+			border-radius: 30px;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%,0);
+			padding: 5px;
+			margin: 0px auto ;
+			transition: 0.3s;
+		}
+
+		img:hover 
+		{
+    		box-shadow: 0 0 20px 10px rgba(255, 150, 255, 0.5);
+		}
+
+		a:link
+		{
+			color: brown;
+		}
+
+		a:visited
+		{
+			color: blue;
+		}
+
+		a:hover
+		{
+			color: red;
+		}
+
+		a:active
+		{
+			color: black;
+		}
+
+		@media screen and (max-width:640px)
+		{
+			#login
+			{
+				width:100%;
+			}
+
+		}
+
+		@media screen and (max-width:500px)
+		{
+			#login
+			{
+				width:500px;
+			}
+		}
+
+	</style>
+
+	<a href="javascript:alert('Welcome to My-Base!!');">
+	<img src="base.jpg" alt="My-Base logo">
+	</a>
+
+	<br><br><br><br><br><br><br><br>
+	<marquee bgcolor= rgb(140,100,180)>
+	<h2 style="color: black; font-size:40px; font-family: cambria; text-shadow: 1px 1px 2px yellow, 0 0 25px blue, 0 0 5px darkblue;">
+	Welcome to My-Base.......... The simplest mini Web App!!
+	</h2>
+	</marquee>
+
+
+<script type="text/javascript">
+	
+(function(global){if(typeof(global)==="undefined")
+	{
+		thrownewError("window is undefined");
+	}
+
+	var _hash ="!";
+	var noBackPlease =function()
+	{	
+		global.location.href +="#";
+		global.setTimeout(function(){global.location.href +="!";},50);};
+		global.onhashchange =function(){if(global.location.hash !== _hash){global.location.hash = _hash;}};
+		global.onload =function()
+		{            
+        	noBackPlease();
+        	document.body.onkeydown =function(e){var elm = e.target.nodeName.toLowerCase();if(e.which ===8&&(elm !=='input'&& elm  !=='textarea'))
+        	{
+            	e.preventDefault();
+            }
+            	
+    e.stopPropagation();};}})(window);
+    
+
+function check()
+{
+	var name = /^[0-9]+$/;
+	var pass = /^[A-Za-z_0-9@& ]+$/;
+	
+	if(!name.test(form.uname.value))
+	{
+		alert("Please enter valid characters!!");
+		form.uname.focus();
+		return false;
+	}
+
+	if(!pass.test(form.password.value))
+	{
+		alert("Please enter a valid password!!");
+		form.password.focus();
+		return false;
+	}
+
+	if(form.uname.value.length!=10) 
+	{
+        alert("Phone number must contain 10 characters only!");
+        form.uname.focus();
+        return false;
+    }
+
+    if(form.password.value.length<5) 
+	{
+        alert("Password must contain atleast 5 characters only!");
+        form.password.focus();
+        return false;
+    }
+
+    if(form.password.value.length>15) 
+	{
+        alert("Password must contain atmost 15 characters only!");
+        form.password.focus();
+        return false;
+    }
+      
+    if(form.password.value == form.uname.value) 
+    {
+        alert("Password must be different from Username!");
+        form.password.focus();
+        return false;
+    }
+      
+    re = /[0-9]/;
+    if(!re.test(form.password.value)) 
+    {
+        alert("Password must contain at least one number (0-9)!");
+        form.password.focus();
+        return false;
+    }
+      
+    re = /[a-z]/;
+    if(!re.test(form.password.value)) 
+    {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.password.focus();
+        return false;
+    }
+      
+
+    re = /[A-Z]/;
+    if(!re.test(form.password.value)) 
+    {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.password.focus();
+        return false;
+    }
+
+	return true;
+}
+
+function checkPass()
+{
+    var pass1 = document.getElementById('pwd');
+    var message = document.getElementById('Message');
+    var pass = /^[A-Za-z_0-9 @&]+$/;
+
+    if(!pass.test(pass1.value))
+	{
+		pass1.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Invalid Password!";
+	}
+
+	else
+	{
+		pass1.style.backgroundColor = "#66cc66";
+		message.style.color = "green";
+        message.innerHTML = "Password is valid!";
+	}
+
+	if(pass1.value.length<5) 
+	{
+        pass1.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Too Short Password!!";
+    }
+
+    else if(pass1.value.length>15) 
+	{
+        pass1.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Very Long Password!!";
+    }
+
+    else
+    {
+    	pass1.style.backgroundColor = "#66cc66";
+		message.style.color = "green";
+        message.innerHTML = "Password is valid!";
+    }
+
+    if(pass1.value=="")
+    {
+    	pass1.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Enter Password!";
+    }
+}  
+
+function checkuname()
+{
+	var uname= document.getElementById("uname");
+	var text= /^[0-9]+$/;
+	var message= document.getElementById("message");
+	
+	if(!text.test(uname.value))
+	{
+		uname.style.backgroundColor = "#ff6666";
+        message.style.color = "red";
+        message.innerHTML = "Invalid phone number!";
+	}
+
+	else
+	{
+		uname.style.backgroundColor = "#66cc66";
+        message.style.color = "green";
+        message.innerHTML = "Valid phone number!";
+	}
+
+	if(uname.value.length!=10) 
+	{
+        uname.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Invalid phone number!";
+    }
+
+    if(uname.value=="")
+    {
+    	uname.style.backgroundColor = "#ff6666";
+        message.style.color = "red";
+        message.innerHTML = "Enter phone number!!";
+    }
+
+    if(uname.value<7000000000 || uname.value>9999999999)
+    {
+    	uname.style.backgroundColor = "#ff6666";
+		message.style.color = "red";
+        message.innerHTML = "Invalid phone number!";
+    }
+
+}
+</script>
+</head>
+<body>
+<div id="login">
+<form method="POST" action="http://localhost/test/log.php" onsubmit="return check(this);" name="form">
+Phone: <input type="text" name="uname" id="uname" onkeyup="checkuname(); return false;" required>
+<span id="message" class="confirmMessage"></span>
+<br><br>
+Password: <input type="password" name="password" id="pwd" onkeyup="checkPass(); return false;" required>
+<span id="Message" class="confirmMessage"></span>
+<br><br>
+<input type="checkbox" onchange="document.getElementById('pwd').type=this.checked?'text':'password';">Show password
+
+<br><br>
+<input type="submit" name="submit" value="Log In">
+</form><br><br>
+If you are new to <a href="#"> My-Base</a>, then click here to <a href="add.html">Sign Up</a>
+<br><br><br>
+<a href="my_base.html">Click Here</a> to login using username!
+</div>
+</body>
+</html>
